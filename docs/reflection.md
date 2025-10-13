@@ -8,7 +8,7 @@ Fokusera på tydlighet, variation, ärlighet och vad som är intressant. Exempel
 
 ### L2
 
-Jag har nu gått igenom koden och ändrat om namnet på metoden **calculateMaxPulse** till **calculateMaxHeartRate** för att vara konsekvent (**Be Consistent**) med andra liknande metoder som exempelvis **calculateRestingHeartRate**.
+Jag har nu gått igenom koden och ändrat om namnet på metoden `calculateMaxPulse()` till `calculateMaxHeartRate()` för att vara konsekvent (**Be Consistent**) med andra liknande metoder som exempelvis `calculateRestingHeartRate()`.
 
 ![Refektorering](./images/refactor-pulse-to-heartrate.png)
 
@@ -20,7 +20,7 @@ I starten av L3-appen har jag varit noga med att hålla namngivningen konsekvent
 
 ### L2
 
-Som nämnt tidigare i L2 reflektionen blev metoden **describePulseZones()** inte optimal eftersom den returnerade hårdkodade beskrivningar. Lösningen blev att ta bort den ifrån **createCompleteProfile()** vilket följer **Separation of Concerns**. Jag tycker att detta blev en bra kompromiss där jag behåller beskrivningarna och låter användaren själv kan bestämma om standardbeskrivningarna ska användas eller inte.
+Som nämnt tidigare i L2 reflektionen blev metoden `describePulseZones()` inte optimal eftersom den returnerade hårdkodade beskrivningar. Lösningen blev att ta bort den ifrån `createCompleteProfile()` vilket följer **Separation of Concerns**. Jag tycker att detta blev en bra kompromiss där jag behåller beskrivningarna och låter användaren själv kan bestämma om standardbeskrivningarna ska användas eller inte.
 
 ![Refaktorering](./images/refactor-function.png)
 
@@ -30,7 +30,7 @@ Som nämnt tidigare i L2 reflektionen blev metoden **describePulseZones()** inte
 
 Clean Code är överlag negativt inställd till kommentarer och anser att de är överflödiga och onödiga i de flesta fallen. Jag håller med om att det lätt kan bli en kommentar som bara upprepar exempelvis en metods namn. Jag har själv gjort detta och kommer refaktorera det. Ett exempel från min kod:
 // calculates pace
-calculatePace()
+`calculatePace()`
 Jag kan dock tycka att kommentarer fyller en funktion som inte tas upp i kapitlet. Vilket är att det kan ge en naturlig avskiljare i koden. För mig personligen där jag är i min utveckling så ökar det readability men jag kan förstå att det är onödigt och som boken nämner att whitespaces, blank lines ska täcka detta.
 
 ### L2
@@ -55,3 +55,13 @@ Jag har nu installerat både ESLint och Prettier för min modul. **ESLint** för
 ### L3 
 
 För L3 har jag detta installerat (ESLint kom automatiskt med installationen av Vite/React) och Prettier har jag installerat med samma inställningar som L2. Detta känns väldigt skönt att jag inte kommer behöva tänka på dessa regler utan kan enkelt formatera koden för att applicera reglerna.
+
+## Kapitel 6
+
+Detta kapitel handlade om skillnaden mellan datastrukturer som exponerar data och objekt som exponerar beteende. Detta kapitel tycker jag var utmanande att greppa eftersom JavaScript använder objekt-syntax för både datastrukturer och riktiga objekt, vilket gör det ganska rörigt för mig. 
+
+### L2
+
+Min modul följer principen om **Data/Object Anti-Symmetry**. Klasserna fungerar som objekt som döljer implementationen, medan alla returvärden är rena datastrukturer (nummer, strängar eller objekt med data). Till exempel returnerar `calculatePulseZones()` ett objekt med zoner som bara innehåller data, utan några metoder. Jag tycker denna design fungerar bra för min modul.
+
+### L3
