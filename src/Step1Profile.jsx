@@ -1,15 +1,15 @@
 import { useState } from 'react'
 
 function Profile({ onNext }) {
-  const [selectedGender, setGender] = useState('')
-  const [selectedAge, setAge] = useState('')
-  const [selectedActivityLevel, setActivityLevel] = useState('')
+  const [gender, setGender] = useState('')
+  const [age, setAge] = useState('')
+  const [activityLevel, setActivityLevel] = useState('')
 
   const handleSubmit = () => {
     onNext({
-      gender: selectedGender,
-      age: selectedAge,
-      activityLevel: selectedActivityLevel,
+      gender,
+      age,
+      activityLevel,
     })
   }
   return (
@@ -18,7 +18,7 @@ function Profile({ onNext }) {
       <p>Please fill in your profile information:</p>
       <label>Gender: </label>
       <select
-        value={selectedGender}
+        value={gender}
         onChange={(e) => setGender(e.target.value)}
       >
         <option value="">Select Gender...</option>
@@ -30,13 +30,13 @@ function Profile({ onNext }) {
       <label>Age: </label>
       <input
         type="number"
-        value={selectedAge}
+        value={age}
         onChange={(e) => setAge(e.target.value)}
       />
       <br />
       <label>Activity Level: </label>
       <select
-        value={selectedActivityLevel}
+        value={activityLevel}
         onChange={(e) => setActivityLevel(e.target.value)}
       >
         <option value="">Select Activity Level...</option>

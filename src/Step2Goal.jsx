@@ -1,38 +1,41 @@
 import { useState } from 'react'
 
 function Goal({ onNext }) {
-  const [selectedGoal, setGoal] = useState('')
-  const [selectedTargetTime, setTargetTime] = useState('')
-  const [selectedCurrentRecordDistance, setCurrentRecordDistance] = useState('')
-  const [selectedCurrentRecordTime, setCurrentRecordTime] = useState('')
-  const [selectedTrainingDays, setTrainingDays] = useState('')
+  const [targetDistance, setTargetDistance] = useState('')
+  const [targetTime, setTargetTime] = useState('')
+  const [knownDistance, setKnownDistance] = useState('')
+  const [knownTime, setKnownTime] = useState('')
+  const [runningDaysPerWeek, setRunningDaysPerWeek] = useState('')
 
   const handleSubmit = () => {
     onNext({
-      goal: selectedGoal,
-      targetTime: selectedTargetTime,
-      currentRecordDistance: selectedCurrentRecordDistance,
-      currentRecordTime: selectedCurrentRecordTime,
-      trainingDays: selectedTrainingDays,
+      targetDistance,
+      targetTime,
+      knownDistance,
+      knownTime,
+      runningDaysPerWeek,
     })
   }
   return (
     <div>
       <h1>Goal Step</h1>
-      <p>Testing..</p>
-      <label>Goal: </label>
-      <select value={selectedGoal} onChange={(e) => setGoal(e.target.value)}>
+      <label>Goal Distance: </label>
+      <select
+        value={targetDistance}
+        onChange={(e) => setTargetDistance(e.target.value)}
+      >
         <option value="">Select Distance...</option>
         <option value="5">5K</option>
         <option value="10">10K</option>
-        <option value="21.1">Half Marathon (2.1k)</option>
-        <option value="42.2">Marathon (4.2k)</option>
+        <option value="21.1">Half Marathon (21.1K)</option>
+        <option value="42.2">Marathon (42.2K)</option>
       </select>
+      <br />
       <label>Target Time (in minutes): </label>
       <input
         type="number"
         placeholder="e.g. 45 for 45 minutes"
-        value={selectedTargetTime}
+        value={targetTime}
         onChange={(e) => setTargetTime(e.target.value)}
       />
       <br />
@@ -42,24 +45,25 @@ function Goal({ onNext }) {
         <input
           type="number"
           placeholder="e.g. 5 for 5 km"
-          value={selectedCurrentRecordDistance}
-          onChange={(e) => setCurrentRecordDistance(e.target.value)}
+          value={knownDistance}
+          onChange={(e) => setKnownDistance(e.target.value)}
         />
       </label>
+      <br />
       <label>
         Your current record time (in minutes):
         <input
           type="number"
           placeholder="e.g. 30 for 30 minutes"
-          value={selectedCurrentRecordTime}
-          onChange={(e) => setCurrentRecordTime(e.target.value)}
+          value={knownTime}
+          onChange={(e) => setKnownTime(e.target.value)}
         />
       </label>
       <br />
       <label>How many days per week can you train?</label>
       <select
-        value={selectedTrainingDays}
-        onChange={(e) => setTrainingDays(e.target.value)}
+        value={runningDaysPerWeek}
+        onChange={(e) => setRunningDaysPerWeek(e.target.value)}
       >
         <option value="">Select Training Days...</option>
         <option value="1">1</option>
@@ -68,6 +72,7 @@ function Goal({ onNext }) {
         <option value="4">4</option>
         <option value="5">5</option>
       </select>
+      <br />
       <button onClick={handleSubmit}>Next</button>
     </div>
   )

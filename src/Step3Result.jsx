@@ -1,0 +1,47 @@
+import { FitnessAnalyzer, RacePredictor, TrainingPlanGenerator, RunningCalculator } from "running-toolkit"
+import { useState } from "react"
+
+function Result({ userData, onReset }) {
+    const fitness = new FitnessAnalyzer()
+    const predictor = new RacePredictor()
+    const planner = new TrainingPlanGenerator()
+    const calc = new RunningCalculator()
+
+    const profile = fitness.createCompleteProfile(
+        userData.gender,
+        userData.age,
+        userData.activityLevel
+    )
+
+    const descriptions = fitness.describePulseZones()
+
+    const handleReset = () => {
+        onReset()
+    }
+
+    return (
+        <div>
+            <h1>Your Training Plan & Results</h1>
+            <p>Based on your profile and goals, here is your current fitness assessment:</p>
+            <h2>Profile Summary:</h2>
+            <ul>
+                <li>Gender: {profile.gender}</li>
+                <li>Age: {profile.age}</li>
+                <li>Max Heart Rate: {profile.maxHR} bpm</li>
+                <li>Resting Heart Rate: {profile.restingHR} bpm</li>
+                <li>VO2 Max: {profile.vo2Max} ml/kg/min</li>
+            </ul>
+            <h2>Pulse Zones:</h2>
+            <ul>
+                <li>Zone 1: {profile.zones.zone1.min} - {profile.zones.zone1.max} bpm - {descriptions.zone1}</li>
+                <li>Zone 2: {profile.zones.zone2.min} - {profile.zones.zone2.max} bpm - {descriptions.zone2}</li>
+                <li>Zone 3: {profile.zones.zone3.min} - {profile.zones.zone3.max} bpm - {descriptions.zone3}</li>
+                <li>Zone 4: {profile.zones.zone4.min} - {profile.zones.zone4.max} bpm - {descriptions.zone4}</li>
+                <li>Zone 5: {profile.zones.zone5.min} - {profile.zones.zone5.max} bpm - {descriptions.zone5}</li>
+            </ul>
+            <button onClick={handleReset}>Start Over</button>
+        </div>
+    )
+}
+
+export default Result
