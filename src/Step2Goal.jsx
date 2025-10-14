@@ -8,12 +8,16 @@ function Goal({ onNext }) {
   const [runningDaysPerWeek, setRunningDaysPerWeek] = useState('')
 
   const handleSubmit = () => {
+    if (knownDistance === targetDistance) {
+      alert("Please choose a different distance for your current record than your goal distance.")
+      return
+    }
     onNext({
-      targetDistance,
-      targetTime,
-      knownDistance,
-      knownTime,
-      runningDaysPerWeek,
+      targetDistance: Number(targetDistance),
+      targetTime: Number(targetTime),
+      knownDistance: Number(knownDistance),
+      knownTime: Number(knownTime),
+      runningDaysPerWeek: Number(runningDaysPerWeek),
     })
   }
   return (

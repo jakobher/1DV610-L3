@@ -8,7 +8,7 @@ function Profile({ onNext }) {
   const handleSubmit = () => {
     onNext({
       gender,
-      age,
+      age: Number(age),
       activityLevel,
     })
   }

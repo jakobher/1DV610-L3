@@ -14,6 +14,23 @@ function Result({ userData, onReset }) {
     )
 
     const descriptions = fitness.describePulseZones()
+    const formattedTargetTime = calc.formatTime((userData.targetTime))
+
+    const predictedForGoal = predictor.predictRaceTime(
+        userData.knownDistance,
+        userData.knownTime,
+        userData.targetDistance
+    )
+
+    const isGoalRealistic = predictedForGoal <= userData.targetTime
+
+    const predict5k = predictor.predictRaceTime(userData.knownDistance, userData.knownTime, 5)
+    const predict10k = predictor.predictRaceTime(userData.knownDistance, userData.knownTime, 10)
+    const predictHalf = predictor.predictRaceTime(userData.knownDistance, userData.knownTime, 21.1)
+    const predictMarathon = predictor.predictRaceTime(userData.knownDistance, userData.knownTime, 42.2)
+  
+
+    
 
     const handleReset = () => {
         onReset()
@@ -38,6 +55,18 @@ function Result({ userData, onReset }) {
                 <li>Zone 3: {profile.zones.zone3.min} - {profile.zones.zone3.max} bpm - {descriptions.zone3}</li>
                 <li>Zone 4: {profile.zones.zone4.min} - {profile.zones.zone4.max} bpm - {descriptions.zone4}</li>
                 <li>Zone 5: {profile.zones.zone5.min} - {profile.zones.zone5.max} bpm - {descriptions.zone5}</li>
+            </ul>
+            <h2>Goal Analysis:</h2>
+            <p><strong>Your Goal:</strong> {userData.targetDistance}km in {formattedTargetTime}</p>
+            <p><strong>Required Pace to reach goal:</strong> {calc.calculatePace(userData.targetDistance, userData.targetTime)} min/km</p>
+            <p>Your goal is <strong>{isGoalRealistic ? "Realistic" : "Not realistic"}</strong> based on your provided data.</p>
+            <br />
+            <h2>Predicted Times for Other Distances:</h2>
+            <ul>
+                <li>5K: {calc.formatTime(predict5k)}</li>
+                <li>10K: {calc.formatTime(predict10k)}</li>
+                <li>Half Marathon: {calc.formatTime(predictHalf)}</li>
+                <li>Marathon: {calc.formatTime(predictMarathon)}</li>
             </ul>
             <button onClick={handleReset}>Start Over</button>
         </div>
