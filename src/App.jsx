@@ -5,18 +5,19 @@ import Goal from './Step2Goal.jsx'
 import { useState } from 'react'
 
 function App() {
-  const [profileData, setProfileData] = useState({})
+  const [userData, setUserData] = useState({})
   const [currentStep, setCurrentStep] = useState(1)
 
-  const handleNext = (data) => {
-    setProfileData(data)
-    setCurrentStep(2)
+  const handleStepComplete = (stepData) => {
+    console.log('Step completed with data:', stepData)
+    setUserData({ ...userData, ...stepData })
+    setCurrentStep(currentStep + 1)
   }
 
   return (
     <div>
-      {currentStep === 1 && <Profile onNext={handleNext} />}
-      {currentStep === 2 && <Goal profileData={profileData} />}
+      {currentStep === 1 && <Profile onNext={handleStepComplete} />}
+      {currentStep === 2 && <Goal onNext={handleStepComplete} />}
     </div>
   )
 }
