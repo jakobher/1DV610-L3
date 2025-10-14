@@ -65,3 +65,35 @@ Detta kapitel handlade om skillnaden mellan datastrukturer som exponerar data oc
 Min modul följer principen om **Data/Object Anti-Symmetry**. Klasserna fungerar som objekt som döljer implementationen, medan alla returvärden är rena datastrukturer (nummer, strängar eller objekt med data). Till exempel returnerar `calculatePulseZones()` ett objekt med zoner som bara innehåller data, utan några metoder. Jag tycker denna design fungerar bra för min modul.
 
 ### L3
+
+## Kapitel 7 
+
+Detta kapitel belyser vikten av god error handling. I min modul använder jag **Exceptions** (throw new error()) för inputvalidering, vilket fungerar bra och är rätt enligt kapitlet. Användaren får tydliga felmeddelanden och kan hantera fel med try-catch i sin egna kod. Jag använder privata valideringsmetoder vilket går hand i hand med DRY och separation of concerns.
+
+### L2
+
+Min error hantering fick positiv feedback, så jag väljer att inte göra några förändringar och behåller strukturen som den är.
+
+### L3
+
+## Kapitel 8
+
+Detta kapitel handlar om att hantera gränser mellan kod och externa beroenden. Eftersom min modul inte har några externa beroenden var detta svårt att applicera direkt. Jag förstår konceptet med att "wrappa" tredjepartskod i egna klasser för att minska beroenden, men utan praktisk erfarenhet av det är det svårt att fullt ut greppa. Det är något jag tar med mig till framtida projekt, speciellt L3 där jag kommer använda mig av beroenden.
+
+### L2 
+
+Inga förändringar då modulen inte har några externa beroenden.
+
+### L3
+
+## Kapitel 9
+
+Detta kapitel handlar om hur man skriver rena, tydliga och tillförlitliga tester. Kapitlet betonar att tester är lika viktiga som produktionskod och att dåliga tester gör att kodbasen förlorar flexibilitet medan rena och välstrukturerade tester gör det mer robust och möjlighet att refaktorera system enklare. Viktiga principer jag tar med mig är **One Assert Per Test** och **Single Concept Per Test** för att hålla tester rena och läsbara.
+
+## L2 
+
+Mina nuvarande manuella tester fungerar bra men följer inte **F.I.R.S.T**-principerna fullt ut. Jag väljer dock att behålla dem som de är i modulen.
+
+## L3
+
+
