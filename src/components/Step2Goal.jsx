@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import ValidationService from '../services/ValidationService'
 
 function Goal({ onNext }) {
   const [targetDistance, setTargetDistance] = useState('')
@@ -6,35 +7,23 @@ function Goal({ onNext }) {
   const [knownDistance, setKnownDistance] = useState('')
   const [knownTime, setKnownTime] = useState('')
   const [runningDaysPerWeek, setRunningDaysPerWeek] = useState('')
-
   const [errors, setErrors] = useState({})
 
-  const validateInputs = () => {
-    const newErrors = {}
-
-    if (!targetDistance) {
-      newErrors.targetDistance = 'Please select a target distance'
-    }
-    if (!targetTime || Number(targetTime) <= 0) {
-      newErrors.targetTime = 'Target time must be greater than 0'
-    }
-    if (!knownDistance || Number(knownDistance) <= 0) {
-      newErrors.knownDistance = 'Known distance must be greater than 0'
-    }
-    if (!knownTime || Number(knownTime) <= 0) {
-      newErrors.knownTime = 'Known time must be greater than 0'
-    }
-    if (!runningDaysPerWeek || Number(runningDaysPerWeek) <= 0) {
-      newErrors.runningDaysPerWeek = 'Please select how many days you can train per week'
-    }
-    if (Number(knownDistance) === Number(targetDistance)) {
-      newErrors.knownDistance = 'Known distance must be different from target distance'
-    }
-
-    return newErrors
-  }
+  const validationService = new ValidationService()
 
   const handleSubmit = () => {
+    const validationErrors = validationService.validateGoalFields(
+      targetDistance,
+      targetTime,
+      knownDistance,
+      knownTime,
+      runningDaysPerWeek
+    )
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors)
+      return
+    }
 
     onNext({
       targetDistance: Number(targetDistance),
@@ -55,6 +44,7 @@ function Goal({ onNext }) {
         <option value="21.1">Half Marathon (21.1K)</option>
         <option value="42.2">Marathon (42.2K)</option>
       </select>
+      {errors.targetDistance && <span className="error-message">{errors.targetDistance}</span>}
       <br />
       <label>Target Time (in minutes): </label>
       <input
@@ -63,6 +53,7 @@ function Goal({ onNext }) {
         value={targetTime}
         onChange={(e) => setTargetTime(e.target.value)}
       />
+      {errors.targetTime && <span className="error-message">{errors.targetTime}</span>}
       <br />
       <p>Please provide your current record information:</p>
       <label>
@@ -74,6 +65,8 @@ function Goal({ onNext }) {
           onChange={(e) => setKnownDistance(e.target.value)}
         />
       </label>
+      {errors.knownDistance && <span className="error-message">{errors.knownDistance}</span>}
+      
       <br />
       <label>
         Your current record time (in minutes):
@@ -84,6 +77,7 @@ function Goal({ onNext }) {
           onChange={(e) => setKnownTime(e.target.value)}
         />
       </label>
+      {errors.knownTime && <span className="error-message">{errors.knownTime}</span>}
       <br />
       <label>How many days per week can you train?</label>
       <select value={runningDaysPerWeek} onChange={(e) => setRunningDaysPerWeek(e.target.value)}>
@@ -94,6 +88,7 @@ function Goal({ onNext }) {
         <option value="4">4</option>
         <option value="5">5</option>
       </select>
+      {errors.runningDaysPerWeek && <span className="error-message">{errors.runningDaysPerWeek}</span>}
       <br />
       <button onClick={handleSubmit}>Next</button>
     </div>
