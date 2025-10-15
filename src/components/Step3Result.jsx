@@ -1,7 +1,6 @@
 import { useState, useMemo } from 'react'
-import DataFormatter from './DataFormatter'
-import RunningAnalyzer from './RunningAnalyzer'
-import './Result.css'
+import DataFormatter from '../services/DataFormatter'
+import RunningAnalyzer from '../services/RunningAnalyzer'
 
 function Result({ userData, onReset }) {
   const analyzer = useMemo(() => new RunningAnalyzer(), [])
