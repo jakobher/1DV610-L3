@@ -1,57 +1,29 @@
-import {
-  FitnessAnalyzer,
-  RacePredictor,
-  TrainingPlanGenerator,
-  RunningCalculator,
-} from 'running-toolkit'
 import { useState } from 'react'
 import DataFormatter from './DataFormatter'
+import RunningAnalyzer from './RunningAnalyzer'
 import './Result.css'
 
 function Result({ userData, onReset }) {
-  const fitness = new FitnessAnalyzer()
-  const predictor = new RacePredictor()
-  const planner = new TrainingPlanGenerator()
-  const calc = new RunningCalculator()
+  const analyzer = new RunningAnalyzer()
   const formatter = new DataFormatter()
 
-  const profile = fitness.createCompleteProfile(
-    userData.gender,
-    userData.age,
-    userData.activityLevel
-  )
+  const [showZoneDescriptions, setShowZoneDescriptions] = useState(false)
 
-  const descriptions = fitness.describePulseZones()
+  const profile = analyzer.analyzeProfile(userData.gender, userData.age, userData.activityLevel)
+  const profileSummary = formatter.createProfileSummary(profile)
+  const descriptions = analyzer.describePulseZones()
 
-  const distances = [5, 10, 21.1, 42.2]
-  const predictions = distances.map((dist) => ({
-    distance: dist,
-    time: predictor.predictRaceTime(
-      userData.knownDistance,
-      userData.knownTime,
-      dist
-    ),
-  }))
-
-  const predictedForGoal = predictor.predictRaceTime(
+  const requiredPace = analyzer.calculateRequiredPace(userData.targetDistance, userData.targetTime)
+  const isGoalRealistic = analyzer.assessGoalRealism(
     userData.knownDistance,
     userData.knownTime,
-    userData.targetDistance
-  )
-
-  const isGoalRealistic = predictedForGoal <= userData.targetTime
-  const goalAssessment = formatter.createRealisticAssessment(isGoalRealistic)
-
-  const requiredPace = calc.calculatePace(
     userData.targetDistance,
     userData.targetTime
   )
+  const goalAssessment = formatter.createRealisticAssessment(isGoalRealistic)
 
-  const trainingplan = planner.generateWeeklyRunningPlan(
-    userData.runningDaysPerWeek
-  )
-
-  const [showZoneDescriptions, setShowZoneDescriptions] = useState(false)
+  const predictions = analyzer.predictAllDistances(userData.knownDistance, userData.knownTime)
+  const trainingplan = analyzer.generateTrainingPlan(userData.runningDaysPerWeek)
 
   const handleReset = () => {
     onReset()
@@ -60,13 +32,10 @@ function Result({ userData, onReset }) {
   return (
     <div>
       <h1>Your Training Plan & Results</h1>
-      <p>
-        Based on your profile and goals, here is your current fitness
-        assessment:
-      </p>
+      <p>Based on your profile and goals, here is your current fitness assessment:</p>
       <section className="profile-section">
         <h2>Profile Summary:</h2>
-        <p>{formatter.createProfileSummary(profile)}</p>
+        <p>{profileSummary}</p>
       </section>
       <section className="zones-section">
         <h2>Pulse Zones:</h2>
@@ -96,15 +65,10 @@ function Result({ userData, onReset }) {
         <h2>Goal Analysis:</h2>
         <p>
           <strong>Your Goal:</strong>
-          {formatter.createGoalStatement(
-            userData.targetDistance,
-            userData.targetTime,
-            requiredPace
-          )}
+          {formatter.createGoalStatement(userData.targetDistance, userData.targetTime, requiredPace)}
         </p>
         <p style={{ color: goalAssessment.color }}>
-          <strong>Goal Assessment:</strong>{' '}
-          {goalAssessment.status} - {goalAssessment.message}
+          <strong>Goal Assessment:</strong> {goalAssessment.status} - {goalAssessment.message}
         </p>
         <br />
       </section>
@@ -121,9 +85,7 @@ function Result({ userData, onReset }) {
       <br />
       <section className="training-section">
         <h2>Your Weekly Training Plan:</h2>
-        <p style={{ whiteSpace: 'pre-line' }}>
-          {formatter.formatTrainingDaysList(trainingplan)}
-        </p>
+        <p style={{ whiteSpace: 'pre-line' }}>{formatter.formatTrainingDaysList(trainingplan)}</p>
         <button onClick={handleReset}>Start Over</button>
       </section>
     </div>
