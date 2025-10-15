@@ -28,8 +28,8 @@ function Result({ userData, onReset }) {
     const predict10k = predictor.predictRaceTime(userData.knownDistance, userData.knownTime, 10)
     const predictHalf = predictor.predictRaceTime(userData.knownDistance, userData.knownTime, 21.1)
     const predictMarathon = predictor.predictRaceTime(userData.knownDistance, userData.knownTime, 42.2)
-  
 
+    const trainingplan = planner.generateWeeklyRunningPlan(userData.runningDaysPerWeek)
     
 
     const handleReset = () => {
@@ -67,6 +67,15 @@ function Result({ userData, onReset }) {
                 <li>10K: {calc.formatTime(predict10k)}</li>
                 <li>Half Marathon: {calc.formatTime(predictHalf)}</li>
                 <li>Marathon: {calc.formatTime(predictMarathon)}</li>
+            </ul>
+            <br />
+            <h2>Your Weekly Training Plan:</h2>
+            <ul>
+                {trainingplan.map((dayPlan) => (
+                    <li key={dayPlan.day}>
+                        <strong>{dayPlan.day}:</strong> {dayPlan.workout}
+                    </li>
+                ))}
             </ul>
             <button onClick={handleReset}>Start Over</button>
         </div>
