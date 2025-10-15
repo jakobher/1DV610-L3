@@ -1,0 +1,30 @@
+.result-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.profile-section,
+.zones-section,
+.goal-section,
+.predictions-section,
+.training-section {
+  background: rgb(150, 83, 29);
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.zone-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+}
+
+.zone-item {
+  background: #f0f0f0;
+  padding: 10px;
+  border-radius: 4px;
+}
