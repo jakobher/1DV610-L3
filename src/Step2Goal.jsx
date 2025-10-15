@@ -7,11 +7,35 @@ function Goal({ onNext }) {
   const [knownTime, setKnownTime] = useState('')
   const [runningDaysPerWeek, setRunningDaysPerWeek] = useState('')
 
-  const handleSubmit = () => {
-    if (knownDistance === targetDistance) {
-      alert("Please choose a different distance for your current record than your goal distance.")
-      return
+  const [errors, setErrors] = useState({})
+
+  const validateInputs = () => {
+    const newErrors = {}
+
+    if (!targetDistance) {
+      newErrors.targetDistance = 'Please select a target distance'
     }
+    if (!targetTime || Number(targetTime) <= 0) {
+      newErrors.targetTime = 'Target time must be greater than 0'
+    }
+    if (!knownDistance || Number(knownDistance) <= 0) {
+      newErrors.knownDistance = 'Known distance must be greater than 0'
+    }
+    if (!knownTime || Number(knownTime) <= 0) {
+      newErrors.knownTime = 'Known time must be greater than 0'
+    }
+    if (!runningDaysPerWeek || Number(runningDaysPerWeek) <= 0) {
+      newErrors.runningDaysPerWeek = 'Please select how many days you can train per week'
+    }
+    if (Number(knownDistance) === Number(targetDistance)) {
+      newErrors.knownDistance = 'Known distance must be different from target distance'
+    }
+
+    return newErrors
+  }
+
+  const handleSubmit = () => {
+
     onNext({
       targetDistance: Number(targetDistance),
       targetTime: Number(targetTime),
@@ -24,10 +48,7 @@ function Goal({ onNext }) {
     <div>
       <h1>Goal Step</h1>
       <label>Goal Distance: </label>
-      <select
-        value={targetDistance}
-        onChange={(e) => setTargetDistance(e.target.value)}
-      >
+      <select value={targetDistance} onChange={(e) => setTargetDistance(e.target.value)}>
         <option value="">Select Distance...</option>
         <option value="5">5K</option>
         <option value="10">10K</option>
@@ -65,10 +86,7 @@ function Goal({ onNext }) {
       </label>
       <br />
       <label>How many days per week can you train?</label>
-      <select
-        value={runningDaysPerWeek}
-        onChange={(e) => setRunningDaysPerWeek(e.target.value)}
-      >
+      <select value={runningDaysPerWeek} onChange={(e) => setRunningDaysPerWeek(e.target.value)}>
         <option value="">Select Training Days...</option>
         <option value="1">1</option>
         <option value="2">2</option>
