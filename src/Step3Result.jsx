@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import DataFormatter from './DataFormatter'
 import RunningAnalyzer from './RunningAnalyzer'
 import './Result.css'
 
 function Result({ userData, onReset }) {
-  const analyzer = new RunningAnalyzer()
-  const formatter = new DataFormatter()
+  const analyzer = useMemo(() => new RunningAnalyzer(), [])
+  const formatter = useMemo(() => new DataFormatter(), [])
 
   const [showZoneDescriptions, setShowZoneDescriptions] = useState(false)
 
@@ -50,14 +50,16 @@ function Result({ userData, onReset }) {
           {showZoneDescriptions ? 'Hide' : 'Show'} Zone Descriptions
         </button>
         {showZoneDescriptions && (
+          <div className="zone-descriptions">
+            <h3>Zone Descriptions:</h3>
           <ul>
-            <h2>Zone Descriptions:</h2>
             <li>Zone1: {descriptions.zone1}</li>
             <li>Zone2: {descriptions.zone2}</li>
             <li>Zone3: {descriptions.zone3}</li>
             <li>Zone4: {descriptions.zone4}</li>
             <li>Zone5: {descriptions.zone5}</li>
           </ul>
+            </div>
         )}
       </section>
       <br />

@@ -2,13 +2,21 @@ class DataFormatter {
   formatPaceForDisplay(pace) {
     const minutes = Math.floor(pace)
     const seconds = Math.round((pace - minutes) * 60)
+    if (seconds === 60) {
+      return `${minutes + 1}:00 min/km`
+    }
     return `${minutes}:${seconds.toString().padStart(2, '0')} min/km`
   }
 
   formatTimeInMinutes(totalMinutes) {
     const hours = Math.floor(totalMinutes / 60)
-    const minutes = Math.floor(totalMinutes % 60)
-    const seconds = Math.round((totalMinutes - Math.floor(totalMinutes)) * 60)
+    let minutes = Math.floor(totalMinutes % 60)
+    let seconds = Math.round((totalMinutes - Math.floor(totalMinutes)) * 60)
+    
+    if (seconds === 60) {
+      minutes += 1
+      seconds = 0
+    }
 
     if (hours > 0) {
       return `${hours}h ${minutes}m ${seconds}s`
@@ -37,7 +45,7 @@ class DataFormatter {
       21.1: 'Half Marathon',
       42.2: 'Marathon',
     }
-    return distanceMap[distance] || `${distance}m`
+    return distanceMap[distance] || `${distance}km`
   }
 
   createRealisticAssessment(isRealistic) {
