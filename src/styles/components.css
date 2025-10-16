@@ -41,3 +41,44 @@
   margin-top: 5px;
   display: block;
 }
+
+.help-text {
+  display: block;
+  color: #6c757d;
+  font-size: 0.9em;
+  margin: 8px 0 16px 0;
+  font-style: italic;
+}
+
+h3 {
+  margin-top: 24px;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+label {
+  display: block;
+  margin-top: 12px;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+input, select {
+  width: 100%;
+  max-width: 400px;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #646cff;
+  box-shadow: 0 0 0 3px rgba(100, 108, 255, 0.1);
+}
+
+button {
+  margin-top: 20px;
+}

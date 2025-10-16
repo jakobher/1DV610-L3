@@ -42,6 +42,7 @@ function Profile({ onNext }) {
       <label>Age: </label>
       <input
         type="number"
+        placeholder="Select Age..."
         value={age}
         onChange={(e) => setAge(e.target.value)}
       />
@@ -53,12 +54,15 @@ function Profile({ onNext }) {
         onChange={(e) => setActivityLevel(e.target.value)}
       >
         <option value="">Select Activity Level...</option>
-        <option value="low">Low</option>
-        <option value="medium">Medium</option>
-        <option value="high">High</option>
-        <option value="athlete">Athlete</option>
+        <option value="low">Low - Little to no exercise</option>
+        <option value="medium">Medium - Light activity occasionally</option>
+        <option value="high">High - Regular exercise, good fitness</option>
+        <option value="athlete">Athlete - Train frequently, high fitness</option>
       </select>
       {errors.activityLevel && <span className="error-message">{errors.activityLevel}</span>}
+      <p className="help-text">
+        Your selected gender, age and activity level will be used to create a personalized fitness profile
+        </p>
       <br />
       <button onClick={handleSubmit}>Next</button>
     </div>

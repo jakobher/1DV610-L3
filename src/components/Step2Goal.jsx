@@ -46,6 +46,7 @@ function Goal({ onNext }) {
       </select>
       {errors.targetDistance && <span className="error-message">{errors.targetDistance}</span>}
       <br />
+
       <label>Target Time (in minutes): </label>
       <input
         type="number"
@@ -55,7 +56,12 @@ function Goal({ onNext }) {
       />
       {errors.targetTime && <span className="error-message">{errors.targetTime}</span>}
       <br />
-      <p>Please provide your current record information:</p>
+
+      <h3>Your Current Best Performance:</h3>
+      <p className="help-text">Enter a recent time for a <strong>similar distance</strong> to your goal (but not the same distance)
+      <br />
+      The closer, the better prediction
+      </p>
       <label>
         Your current record distance (in km):
         <input
