@@ -32,6 +32,14 @@ class RunningAnalyzer {
     return this.calc.calculatePace(targetDistance, targetTime)
   }
 
+  calculateCurrentPace(knownDistance, knownTime) {
+    return this.calc.calculatePace(knownDistance, knownTime)
+  }
+
+  calculateSpeed(pace) {
+    return this.calc.paceToSpeed(pace)
+  }
+
   describePulseZones() {
     return this.fitness.describePulseZones()
   }

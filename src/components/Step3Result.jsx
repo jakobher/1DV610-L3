@@ -13,6 +13,8 @@ function Result({ userData, onReset }) {
   const descriptions = analyzer.describePulseZones()
 
   const requiredPace = analyzer.calculateRequiredPace(userData.targetDistance, userData.targetTime)
+  const requiredSpeed = analyzer.calculateSpeed(requiredPace)
+
   const isGoalRealistic = analyzer.assessGoalRealism(
     userData.knownDistance,
     userData.knownTime,
@@ -70,12 +72,14 @@ function Result({ userData, onReset }) {
       <br />
       <section className="goal-section">
         <h2>Goal Analysis:</h2>
+        <p><strong>Your Distance Goal:</strong> {userData.targetDistance}km</p>
+        <p><strong>Your Time Goal:</strong> {formatter.formatTimeInMinutes(userData.targetTime)}</p>
         <p>
-          <strong>Your Goal:</strong>
-          {formatter.createGoalStatement(userData.targetDistance, userData.targetTime, requiredPace)}
+          <strong>Required Average Pace:</strong> {formatter.formatPaceForDisplay(requiredPace)}
+          <em> ({formatter.formatSpeedForDisplay(requiredSpeed)})</em>
         </p>
-        <p style={{ color: goalAssessment.color }}>
-          <strong>Goal Assessment:</strong> {goalAssessment.status} - {goalAssessment.message}
+        <p>
+          <strong>{goalAssessment.icon} {goalAssessment.status}</strong> {goalAssessment.message}
         </p>
         <br />
       </section>

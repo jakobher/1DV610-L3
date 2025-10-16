@@ -8,11 +8,15 @@ class DataFormatter {
     return `${minutes}:${seconds.toString().padStart(2, '0')} min/km`
   }
 
+  formatSpeedForDisplay(speed) {
+    return `${speed.toFixed(1)} km/h`
+  }
+
   formatTimeInMinutes(totalMinutes) {
     const hours = Math.floor(totalMinutes / 60)
     let minutes = Math.floor(totalMinutes % 60)
     let seconds = Math.round((totalMinutes - Math.floor(totalMinutes)) * 60)
-    
+
     if (seconds === 60) {
       minutes += 1
       seconds = 0
@@ -34,14 +38,8 @@ class DataFormatter {
       gender: profile.gender,
       restingHeartRate: profile.restingHR,
       maxHeartRate: profile.maxHR,
-      vo2Max: profile.vo2Max
+      vo2Max: profile.vo2Max,
     }
-  }
-
-  createGoalStatement(targetDistance, targetTime, requiredPace) {
-    const formattedTime = this.formatTimeInMinutes(targetTime)
-    const formattedPace = this.formatPaceForDisplay(requiredPace)
-    return `Complete ${targetDistance}km in ${formattedTime} (${formattedPace} pace)`
   }
 
   formatDistanceName(distance) {
@@ -58,15 +56,14 @@ class DataFormatter {
     if (isRealistic) {
       return {
         status: 'Realistic',
-        message: 'Your goal is achievable based on your current fitness level.',
-        color: 'green',
+        message: 'Your goal is achievable based on your recent performance',
+        icon: '✅',
       }
     }
     return {
       status: 'Challenging',
-      message:
-        'Your goal is ambitious but may require significant effort and training.',
-      color: 'orange',
+      message: 'Your goal may be challenging based on your recent performance',
+      icon: '⚠️',
     }
   }
 
