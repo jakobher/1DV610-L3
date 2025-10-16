@@ -73,5 +73,9 @@ class DataFormatter {
       .map((day) => `${day.day}: ${day.workout}`)
       .join('\n')
   }
+
+  formatTrainingDistance(distanceData) {
+    return `${distanceData.min.toFixed(1)}-${distanceData.max.toFixed(1)} km `
+}
 }
 export default DataFormatter

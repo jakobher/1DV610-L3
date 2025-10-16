@@ -25,6 +25,7 @@ function Result({ userData, onReset }) {
 
   const predictions = analyzer.predictAllDistances(userData.knownDistance, userData.knownTime)
   const trainingplan = analyzer.generateTrainingPlan(userData.runningDaysPerWeek)
+  const trainingDistances = analyzer.calculateTrainingDistances(userData.targetDistance)
 
   const handleReset = () => {
     onReset()
@@ -95,6 +96,13 @@ function Result({ userData, onReset }) {
       <section className="training-section">
         <h2>Your Weekly Training Plan:</h2>
         <p style={{ whiteSpace: 'pre-line' }}>{formatter.formatTrainingDaysList(trainingplan)}</p>
+        <h3>Recommended Training Distances for Your Goal:</h3>
+        <ul>
+          <li>Easy Run: {formatter.formatTrainingDistance(trainingDistances.easyRun)}</li>
+          <li>Tempo Run: {formatter.formatTrainingDistance(trainingDistances.tempoRun)}</li>
+          <li>Long Run: {formatter.formatTrainingDistance(trainingDistances.longRun)}</li>
+          <li>Intervals: {formatter.formatTrainingDistance(trainingDistances.intervals)}</li>
+        </ul>
         <button onClick={handleReset}>Start Over</button>
       </section>
     </div>

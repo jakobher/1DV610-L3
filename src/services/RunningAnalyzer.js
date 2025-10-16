@@ -45,6 +45,31 @@ class RunningAnalyzer {
   describePulseZones() {
     return this.fitness.describePulseZones()
   }
+
+  calculateTrainingDistances(targetDistance) {
+    return {
+      easyRun: {
+        min: targetDistance * 0.4,
+        max: targetDistance * 0.6,
+        description: 'Easy Run',
+      },
+      tempoRun: {
+        min: targetDistance * 0.6,
+        max: targetDistance * 0.8,
+        description: 'Tempo Run',
+      },
+      longRun: {
+        min: targetDistance * 0.8,
+        max: targetDistance * 1.0,
+        description: 'Long Run',
+      },
+      intervals: {
+        min: targetDistance * 0.3,
+        max: targetDistance * 0.5,
+        description: 'Interval Training',
+      }
+    }
+  }
 }
 
 export default RunningAnalyzer
