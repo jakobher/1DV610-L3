@@ -34,7 +34,13 @@ function Result({ userData, onReset }) {
       <p>Based on your profile and goals, here is your current fitness assessment:</p>
       <section className="profile-section">
         <h2>Profile Summary:</h2>
-        <p>{profileSummary}</p>
+        <ul>
+          <li>Age: {profileSummary.age}</li>
+          <li>Gender: {profileSummary.gender}</li>
+          <li>Resting Heart Rate: {profileSummary.restingHeartRate} bpm</li>
+          <li>Max Heart Rate: {profileSummary.maxHeartRate} bpm</li>
+          <li>VO2 Max: {profileSummary.vo2Max} ml/kg/min</li>
+        </ul>
       </section>
       <section className="zones-section">
         <h2>Pulse Zones:</h2>

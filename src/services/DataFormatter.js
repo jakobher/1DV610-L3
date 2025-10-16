@@ -29,7 +29,13 @@ class DataFormatter {
   }
 
   createProfileSummary(profile) {
-    return `${profile.age} year old ${profile.gender}, VO2 Max: ${profile.vo2Max} ml/kg/min`
+    return {
+      age: profile.age,
+      gender: profile.gender,
+      restingHeartRate: profile.restingHR,
+      maxHeartRate: profile.maxHR,
+      vo2Max: profile.vo2Max
+    }
   }
 
   createGoalStatement(targetDistance, targetTime, requiredPace) {
