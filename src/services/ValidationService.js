@@ -1,5 +1,6 @@
 class ValidationService {
-    validateProfileFields(gender, age, activityLevel) {
+    validateProfileFields(profileData) {
+        const { gender, age, activityLevel } = profileData
         const errors = {}
         if (!gender) {
             errors.gender = 'Please, select your gender'
@@ -15,13 +16,20 @@ class ValidationService {
         return errors
     }
 
-    validateGoalFields(targetDistance, targetTime, knownDistance, knownTime, runningDaysPerWeek) {
+    validateGoalFields(goalData) {
+        const { targetDistance, targetTime, knownDistance, knownTime, runningDaysPerWeek } = goalData
         const errors = {}
         if (!targetDistance) {
             errors.targetDistance = 'Please, select your goal distance'
         }
+        if (Number(targetDistance) > 100) {
+            errors.targetDistance = 'Target distance seems unrealistic, please select a distance less than 100 km'
+        }
         if (!targetTime || Number(targetTime) <= 0) {
             errors.targetTime = 'Target time must be greater than 0'
+        }
+        if (Number(targetTime) > 600) {
+            errors.targetTime = 'Target time seems unrealistic, please enter a time less than 600 minutes'
         }
         if (!knownDistance || Number(knownDistance) <= 0) {
             errors.knownDistance = 'Known distance must be greater than 0'

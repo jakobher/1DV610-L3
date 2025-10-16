@@ -8,19 +8,19 @@ function Result({ userData, onReset }) {
 
   const [showZoneDescriptions, setShowZoneDescriptions] = useState(false)
 
-  const profile = analyzer.analyzeProfile(userData.gender, userData.age, userData.activityLevel)
+  const profile = analyzer.analyzeProfile({gender: userData.gender, age: userData.age, activityLevel: userData.activityLevel})
   const profileSummary = formatter.createProfileSummary(profile)
   const descriptions = analyzer.describePulseZones()
 
   const requiredPace = analyzer.calculateRequiredPace(userData.targetDistance, userData.targetTime)
   const requiredSpeed = analyzer.calculateSpeed(requiredPace)
 
-  const isGoalRealistic = analyzer.assessGoalRealism(
-    userData.knownDistance,
-    userData.knownTime,
-    userData.targetDistance,
-    userData.targetTime
-  )
+  const isGoalRealistic = analyzer.assessGoalRealism({
+    knownDistance: userData.knownDistance,
+    knownTime: userData.knownTime,
+    targetDistance: userData.targetDistance,
+    targetTime: userData.targetTime
+})
   const goalAssessment = formatter.createRealisticAssessment(isGoalRealistic)
 
   const predictions = analyzer.predictAllDistances(userData.knownDistance, userData.knownTime)
@@ -69,7 +69,6 @@ function Result({ userData, onReset }) {
             </div>
         )}
       </section>
-      <br />
       <section className="goal-section">
         <h2>Goal Analysis:</h2>
         <p><strong>Your Distance Goal:</strong> {userData.targetDistance}km</p>
@@ -93,7 +92,6 @@ function Result({ userData, onReset }) {
           ))}
         </ul>
       </section>
-      <br />
       <section className="training-section">
         <h2>Your Weekly Training Plan:</h2>
         <p style={{ whiteSpace: 'pre-line' }}>{formatter.formatTrainingDaysList(trainingplan)}</p>

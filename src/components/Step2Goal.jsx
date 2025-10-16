@@ -12,13 +12,13 @@ function Goal({ onNext }) {
   const validationService = new ValidationService()
 
   const handleSubmit = () => {
-    const validationErrors = validationService.validateGoalFields(
+    const validationErrors = validationService.validateGoalFields({
       targetDistance,
       targetTime,
       knownDistance,
       knownTime,
       runningDaysPerWeek
-    )
+    })
 
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors)

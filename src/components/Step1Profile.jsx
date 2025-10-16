@@ -10,7 +10,7 @@ function Profile({ onNext }) {
   const validationService = new ValidationService()
 
   const handleSubmit = () => {
-    const validationErrors = validationService.validateProfileFields(gender, age, activityLevel)
+    const validationErrors = validationService.validateProfileFields({gender, age, activityLevel})
 
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors)

@@ -7,7 +7,8 @@ class RunningAnalyzer {
     this.calc = new RunningCalculator()
   }
 
-  analyzeProfile(gender, age, activityLevel) {
+  analyzeProfile(profileData) {
+    const { gender, age, activityLevel } = profileData
     return this.fitness.createCompleteProfile(gender, age, activityLevel)
   }
 
@@ -19,7 +20,8 @@ class RunningAnalyzer {
     }))
   }
 
-  assessGoalRealism(knownDistance, knownTime, targetDistance, targetTime) {
+  assessGoalRealism(goalData) {
+    const { knownDistance, knownTime, targetDistance, targetTime } = goalData
     const predictedForGoal = this.predictor.predictRaceTime(knownDistance, knownTime, targetDistance)
     return predictedForGoal <= targetTime
   }
