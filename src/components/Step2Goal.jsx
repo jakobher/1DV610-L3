@@ -35,8 +35,15 @@ function Goal({ onNext }) {
   }
   return (
     <div>
-      <h1>Goal Step</h1>
-      <label>Goal Distance: </label>
+      <h1>Set Your Running Goal</h1>
+      <section className="form-section">
+        <h2>🎯 Your Goal Details</h2>
+        <div className="help-text">
+        <p> Select your target distance and the time you aim to achieve it in.</p>
+        </div>
+      
+        <div className="form-group">
+      <label>Your Target Distance: </label>
       <select value={targetDistance} onChange={(e) => setTargetDistance(e.target.value)}>
         <option value="">Select Distance...</option>
         <option value="5">5K</option>
@@ -45,9 +52,10 @@ function Goal({ onNext }) {
         <option value="42.2">Marathon (42.2K)</option>
       </select>
       {errors.targetDistance && <span className="error-message">{errors.targetDistance}</span>}
-      <br />
+      </div>
 
-      <label>Target Time (in minutes): </label>
+      <div className="form-group">
+      <label>Your Target Time (in minutes): </label>
       <input
         type="number"
         placeholder="e.g. 45 for 45 minutes"
@@ -55,36 +63,46 @@ function Goal({ onNext }) {
         onChange={(e) => setTargetTime(e.target.value)}
       />
       {errors.targetTime && <span className="error-message">{errors.targetTime}</span>}
-      <br />
+      </div>
+      </section>
 
-      <h3>Your Current Best Performance:</h3>
-      <p className="help-text">Enter a recent time for a <strong>similar distance</strong> to your goal (but not the same distance)
-      <br />
+      <section className="form-section">
+      <h2>📊 Your Current Best Performance:</h2>
+      <div className="help-text">  
+      <p>Enter a recent time for a <strong>similar distance</strong> to your goal (but not the same distance)
       The closer, the better prediction
       </p>
+      </div>
+      <div className="form-group">
       <label>
-        Your current record distance (in km):
+        Your current race distance (in km):
+        </label>
         <input
           type="number"
           placeholder="e.g. 5 for 5 km"
           value={knownDistance}
           onChange={(e) => setKnownDistance(e.target.value)}
         />
-      </label>
       {errors.knownDistance && <span className="error-message">{errors.knownDistance}</span>}
-      
-      <br />
+      </div>
+      <div className="form-group">
       <label>
-        Your current record time (in minutes):
+        Your current race time (in minutes):
+        </label>
         <input
           type="number"
           placeholder="e.g. 30 for 30 minutes"
           value={knownTime}
           onChange={(e) => setKnownTime(e.target.value)}
         />
-      </label>
+    
       {errors.knownTime && <span className="error-message">{errors.knownTime}</span>}
-      <br />
+      </div>
+      </section>
+
+      <section className="form-section">
+        <h2>📅 Training Availability</h2>
+        <div className="form-group">
       <label>How many days per week can you train?</label>
       <select value={runningDaysPerWeek} onChange={(e) => setRunningDaysPerWeek(e.target.value)}>
         <option value="">Select Training Days...</option>
@@ -95,8 +113,18 @@ function Goal({ onNext }) {
         <option value="5">5</option>
       </select>
       {errors.runningDaysPerWeek && <span className="error-message">{errors.runningDaysPerWeek}</span>}
-      <br />
+      </div>
+      </section>
+
+      <div className="help-text">
+        <p>
+          Click "Next" to generate your fitness profile and training plan. All fields are required. Make sure to provide realistic values for the best results.
+        </p>
+      </div>
+      
+      <div className="button-container">
       <button onClick={handleSubmit}>Next</button>
+      </div>
     </div>
   )
 }

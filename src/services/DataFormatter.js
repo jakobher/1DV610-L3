@@ -70,7 +70,7 @@ class DataFormatter {
   formatTrainingDaysList(trainingPlan) {
     return trainingPlan
       .filter((day) => day.workout !== 'Rest')
-      .map((day) => `${day.day}: ${day.workout}`)
+      .map((day) => day.workout)
       .join('\n')
   }
 

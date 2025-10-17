@@ -14,11 +14,13 @@
 .goal-section,
 .predictions-section,
 .training-section {
-  background: rgb(150, 83, 29);
+  background: #81707027;
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border: rgba(212, 155, 48, 0.938) 1px solid;
+
 }
 
 .zone-list {
@@ -48,12 +50,14 @@
   font-size: 0.9em;
   margin: 8px 0 16px 0;
   font-style: italic;
+  max-width: 500px;
+  text-align: center;
 }
 
 h3 {
   margin-top: 24px;
   margin-bottom: 12px;
-  color: #333;
+  color: #999595;
 }
 
 label {
@@ -65,20 +69,92 @@ label {
 
 input, select {
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
   padding: 8px 12px;
   margin-bottom: 8px;
-  border: 1px solid #ddd;
+  border: 1px solid rgba(255, 255, 255, 0.308);
   border-radius: 4px;
   font-size: 1em;
+  box-sizing: border-box;
 }
 
 input:focus, select:focus {
   outline: none;
   border-color: #646cff;
-  box-shadow: 0 0 0 3px rgba(100, 108, 255, 0.1);
+  box-shadow: 0 0 0 3px rgba(212, 155, 48, 0.938);
 }
 
 button {
+  border-color: rgba(139, 137, 132, 0.048);
   margin-top: 20px;
+  min-width: 120px;
+  transition: transform 0.2s ease;
+}
+
+.button-container {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+body > div {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+
+.form-section {
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(212, 155, 48, 0.938);
+}
+
+.form-section h2 {
+  font-size: 1.4em;
+  margin-bottom: 16px;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.page-intro {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.1em;
+  margin-bottom: 32px;
+  margin-top: -30px;
+}
+
+.training-days {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.training-day {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 12px 16px;
+  border-radius: 6px;
+  border-left: 3px solid rgba(212, 155, 48, 0.938);
 }

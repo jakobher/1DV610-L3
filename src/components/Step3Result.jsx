@@ -8,7 +8,11 @@ function Result({ userData, onReset }) {
 
   const [showZoneDescriptions, setShowZoneDescriptions] = useState(false)
 
-  const profile = analyzer.analyzeProfile({gender: userData.gender, age: userData.age, activityLevel: userData.activityLevel})
+  const profile = analyzer.analyzeProfile({
+    gender: userData.gender,
+    age: userData.age,
+    activityLevel: userData.activityLevel,
+  })
   const profileSummary = formatter.createProfileSummary(profile)
   const descriptions = analyzer.describePulseZones()
 
@@ -19,13 +23,17 @@ function Result({ userData, onReset }) {
     knownDistance: userData.knownDistance,
     knownTime: userData.knownTime,
     targetDistance: userData.targetDistance,
-    targetTime: userData.targetTime
-})
+    targetTime: userData.targetTime,
+  })
   const goalAssessment = formatter.createRealisticAssessment(isGoalRealistic)
 
   const predictions = analyzer.predictAllDistances(userData.knownDistance, userData.knownTime)
   const trainingplan = analyzer.generateTrainingPlan(userData.runningDaysPerWeek)
   const trainingDistances = analyzer.calculateTrainingDistances(userData.targetDistance)
+
+  const handlePrint = () => {
+    window.print()
+  }
 
   const handleReset = () => {
     onReset()
@@ -33,10 +41,11 @@ function Result({ userData, onReset }) {
 
   return (
     <div>
-      <h1>Your Training Plan & Results</h1>
-      <p>Based on your profile and goals, here is your current fitness assessment:</p>
+      <h1>🏆 Your Training Plan & Results</h1>
+      <p className="page-intro">Based on you profile and goals, here's your personalized fitness profile and training plan</p>
+
       <section className="profile-section">
-        <h2>Profile Summary:</h2>
+        <h2>👤 Profile Summary</h2>
         <ul>
           <li>Age: {profileSummary.age}</li>
           <li>Gender: {profileSummary.gender}</li>
@@ -45,8 +54,9 @@ function Result({ userData, onReset }) {
           <li>VO2 Max: {profileSummary.vo2Max} ml/kg/min</li>
         </ul>
       </section>
+
       <section className="zones-section">
-        <h2>Pulse Zones:</h2>
+        <h2>💓 Pulse Zones</h2>
         <ul>
           <li>Zone 1: {formatter.formatHeartRateZone(profile.zones.zone1)}</li>
           <li>Zone 2: {formatter.formatHeartRateZone(profile.zones.zone2)}</li>
@@ -55,36 +65,43 @@ function Result({ userData, onReset }) {
           <li>Zone 5: {formatter.formatHeartRateZone(profile.zones.zone5)}</li>
         </ul>
         <button onClick={() => setShowZoneDescriptions(!showZoneDescriptions)}>
-          {showZoneDescriptions ? 'Hide' : 'Show'} Zone Descriptions
+          {showZoneDescriptions ? '▲ Hide' : '▼ Show'} Zone Descriptions
         </button>
         {showZoneDescriptions && (
           <div className="zone-descriptions">
-            <h3>Zone Descriptions:</h3>
-          <ul>
-            <li>Zone1: {descriptions.zone1}</li>
-            <li>Zone2: {descriptions.zone2}</li>
-            <li>Zone3: {descriptions.zone3}</li>
-            <li>Zone4: {descriptions.zone4}</li>
-            <li>Zone5: {descriptions.zone5}</li>
-          </ul>
-            </div>
+            <h3>What do the zones mean?</h3>
+            <ul>
+              <li><strong>Zone 1:</strong> {descriptions.zone1}</li>
+              <li><strong>Zone 2:</strong> {descriptions.zone2}</li>
+              <li><strong>Zone 3:</strong> {descriptions.zone3}</li>
+              <li><strong>Zone 4:</strong> {descriptions.zone4}</li>
+              <li><strong>Zone 5:</strong> {descriptions.zone5}</li>
+            </ul>
+          </div>
         )}
       </section>
       <section className="goal-section">
-        <h2>Goal Analysis:</h2>
-        <p><strong>Your Distance Goal:</strong> {userData.targetDistance}km</p>
-        <p><strong>Your Time Goal:</strong> {formatter.formatTimeInMinutes(userData.targetTime)}</p>
+        <h2>🎯 Goal Analysis</h2>
+        <p>
+          <strong>Your Distance Goal:</strong> {userData.targetDistance}km
+        </p>
+        <p>
+          <strong>Your Time Goal:</strong> {formatter.formatTimeInMinutes(userData.targetTime)}
+        </p>
         <p>
           <strong>Required Average Pace:</strong> {formatter.formatPaceForDisplay(requiredPace)}
           <em> ({formatter.formatSpeedForDisplay(requiredSpeed)})</em>
         </p>
         <p>
-          <strong>{goalAssessment.icon} {goalAssessment.status}</strong> {goalAssessment.message}
+          <strong>
+            {goalAssessment.icon} {goalAssessment.status}
+          </strong>{' '}
+          {goalAssessment.message}
         </p>
         <br />
       </section>
       <section className="predictions-section">
-        <h2>Predicted Times for Other Distances:</h2>
+        <h2>⏱️Predicted Race Times</h2>
         <ul>
           {predictions.map((pred) => (
             <li key={pred.distance}>
@@ -94,8 +111,14 @@ function Result({ userData, onReset }) {
         </ul>
       </section>
       <section className="training-section">
-        <h2>Your Weekly Training Plan:</h2>
-        <p style={{ whiteSpace: 'pre-line' }}>{formatter.formatTrainingDaysList(trainingplan)}</p>
+        <h2>📅 Your Weekly Training Plan</h2>
+        <div className="training-days">
+          {trainingplan.filter(day => day.workout !== 'Rest').map((day, index) => (
+            <div key={index} className="training-day">
+              {day.workout}
+            </div>
+          ))}
+        </div>
         <h3>Recommended Training Distances for Your Goal:</h3>
         <ul>
           <li>Easy Run: {formatter.formatTrainingDistance(trainingDistances.easyRun)}</li>
@@ -103,7 +126,14 @@ function Result({ userData, onReset }) {
           <li>Long Run: {formatter.formatTrainingDistance(trainingDistances.longRun)}</li>
           <li>Intervals: {formatter.formatTrainingDistance(trainingDistances.intervals)}</li>
         </ul>
-        <button onClick={handleReset}>Start Over</button>
+
+        <div className="help-text">
+          <p>💡 Note: Your results will not be saved. Please take note/screenshot or print it. Click "Start Over" to create a new plan.</p>
+        </div>
+        <div className="button-container">
+          <button onClick={handlePrint}>🖨️ Print Results</button>
+          <button onClick={handleReset}>🔄 Start Over</button>
+        </div>
       </section>
     </div>
   )
