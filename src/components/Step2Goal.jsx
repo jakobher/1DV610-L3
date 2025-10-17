@@ -35,7 +35,7 @@ function Goal({ onNext }) {
   }
   return (
     <div>
-      <h1>Set Your Running Goal</h1>
+      <h1>🏃 Set Your Running Goal</h1>
       <section className="form-section">
         <h2>🎯 Your Goal Details</h2>
         <div className="help-text">

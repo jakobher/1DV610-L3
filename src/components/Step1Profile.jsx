@@ -25,10 +25,10 @@ function Profile({ onNext }) {
   }
   return (
     <div>
-      <h1>Create Your Profile</h1>
+      <h1>👤 Create Your Profile</h1>
 
       <section className="form-section">
-        <h2>👤 Your Personal Details</h2>
+        <h2>📋 Your Personal Details</h2>
         <div className="help-text">
           <p>This information will be used to calculate personalized fitness metrics.</p>
         </div>
