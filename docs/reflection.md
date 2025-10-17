@@ -52,13 +52,13 @@ Jag har nu installerat både ESLint och Prettier för min modul. **ESLint** för
 [Refaktorering](./images/refactor-prettier.png)
 [Refaktorering](./images/refactor-ESLint.png)
 
-### L3 
+### L3
 
 För L3 har jag detta installerat (ESLint kom automatiskt med installationen av Vite/React) och Prettier har jag installerat med samma inställningar som L2. Detta känns väldigt skönt att jag inte kommer behöva tänka på dessa regler utan kan enkelt formatera koden för att applicera reglerna.
 
 ## Kapitel 6
 
-Detta kapitel handlade om skillnaden mellan datastrukturer som exponerar data och objekt som exponerar beteende. Detta kapitel tycker jag var utmanande att greppa eftersom JavaScript använder objekt-syntax för både datastrukturer och riktiga objekt, vilket gör det ganska rörigt för mig. 
+Detta kapitel handlade om skillnaden mellan datastrukturer som exponerar data och objekt som exponerar beteende. Detta kapitel tycker jag var utmanande att greppa eftersom JavaScript använder objekt-syntax för både datastrukturer och riktiga objekt, vilket gör det ganska rörigt för mig.
 
 ### L2
 
@@ -66,7 +66,7 @@ Min modul följer principen om **Data/Object Anti-Symmetry**. Klasserna fungerar
 
 ### L3
 
-## Kapitel 7 
+## Kapitel 7
 
 Detta kapitel belyser vikten av god error handling. I min modul använder jag **Exceptions** (throw new error()) för inputvalidering, vilket fungerar bra och är rätt enligt kapitlet. Användaren får tydliga felmeddelanden och kan hantera fel med try-catch i sin egna kod. Jag använder privata valideringsmetoder vilket går hand i hand med DRY och separation of concerns.
 
@@ -80,7 +80,7 @@ Min error hantering fick positiv feedback, så jag väljer att inte göra några
 
 Detta kapitel handlar om att hantera gränser mellan kod och externa beroenden. Eftersom min modul inte har några externa beroenden var detta svårt att applicera direkt. Jag förstår konceptet med att "wrappa" tredjepartskod i egna klasser för att minska beroenden, men utan praktisk erfarenhet av det är det svårt att fullt ut greppa. Det är något jag tar med mig till framtida projekt, speciellt L3 där jag kommer använda mig av beroenden.
 
-### L2 
+### L2
 
 Inga förändringar då modulen inte har några externa beroenden.
 
@@ -90,10 +90,8 @@ Inga förändringar då modulen inte har några externa beroenden.
 
 Detta kapitel handlar om hur man skriver rena, tydliga och tillförlitliga tester. Kapitlet betonar att tester är lika viktiga som produktionskod och att dåliga tester gör att kodbasen förlorar flexibilitet medan rena och välstrukturerade tester gör det mer robust och möjlighet att refaktorera system enklare. Viktiga principer jag tar med mig är **One Assert Per Test** och **Single Concept Per Test** för att hålla tester rena och läsbara.
 
-## L2 
+## L2
 
 Mina nuvarande manuella tester fungerar bra men följer inte **F.I.R.S.T**-principerna fullt ut. Jag väljer dock att behålla dem som de är i modulen.
 
 ## L3
-
-

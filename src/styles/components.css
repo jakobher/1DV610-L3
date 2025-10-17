@@ -18,9 +18,8 @@
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border: rgba(212, 155, 48, 0.938) 1px solid;
-
 }
 
 .zone-list {
@@ -67,7 +66,8 @@ label {
   font-weight: 500;
 }
 
-input, select {
+input,
+select {
   width: 100%;
   max-width: 500px;
   padding: 8px 12px;
@@ -78,7 +78,8 @@ input, select {
   box-sizing: border-box;
 }
 
-input:focus, select:focus {
+input:focus,
+select:focus {
   outline: none;
   border-color: #646cff;
   box-shadow: 0 0 0 3px rgba(212, 155, 48, 0.938);
@@ -115,7 +116,6 @@ button:hover {
 button:active {
   transform: translateY(0);
 }
-
 
 .form-section {
   margin-bottom: 32px;

@@ -67,7 +67,7 @@ class RunningAnalyzer {
         min: targetDistance * 0.3,
         max: targetDistance * 0.5,
         description: 'Interval Training',
-      }
+      },
     }
   }
 }

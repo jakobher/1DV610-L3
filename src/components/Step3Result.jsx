@@ -42,7 +42,9 @@ function Result({ userData, onReset }) {
   return (
     <div>
       <h1>🏆 Your Training Plan & Results</h1>
-      <p className="page-intro">Based on you profile and goals, here's your personalized fitness profile and training plan</p>
+      <p className="page-intro">
+        Based on you profile and goals, here's your personalized fitness profile and training plan
+      </p>
 
       <section className="profile-section">
         <h2>👤 Profile Summary</h2>
@@ -71,11 +73,21 @@ function Result({ userData, onReset }) {
           <div className="zone-descriptions">
             <h3>What do the zones mean?</h3>
             <ul>
-              <li><strong>Zone 1:</strong> {descriptions.zone1}</li>
-              <li><strong>Zone 2:</strong> {descriptions.zone2}</li>
-              <li><strong>Zone 3:</strong> {descriptions.zone3}</li>
-              <li><strong>Zone 4:</strong> {descriptions.zone4}</li>
-              <li><strong>Zone 5:</strong> {descriptions.zone5}</li>
+              <li>
+                <strong>Zone 1:</strong> {descriptions.zone1}
+              </li>
+              <li>
+                <strong>Zone 2:</strong> {descriptions.zone2}
+              </li>
+              <li>
+                <strong>Zone 3:</strong> {descriptions.zone3}
+              </li>
+              <li>
+                <strong>Zone 4:</strong> {descriptions.zone4}
+              </li>
+              <li>
+                <strong>Zone 5:</strong> {descriptions.zone5}
+              </li>
             </ul>
           </div>
         )}
@@ -113,11 +125,13 @@ function Result({ userData, onReset }) {
       <section className="training-section">
         <h2>📅 Your Weekly Training Plan</h2>
         <div className="training-days">
-          {trainingplan.filter(day => day.workout !== 'Rest').map((day, index) => (
-            <div key={index} className="training-day">
-              {day.workout}
-            </div>
-          ))}
+          {trainingplan
+            .filter((day) => day.workout !== 'Rest')
+            .map((day, index) => (
+              <div key={index} className="training-day">
+                {day.workout}
+              </div>
+            ))}
         </div>
         <h3>Recommended Training Distances for Your Goal:</h3>
         <ul>
@@ -128,7 +142,10 @@ function Result({ userData, onReset }) {
         </ul>
 
         <div className="help-text">
-          <p>💡 Note: Your results will not be saved. Please take note/screenshot or print it. Click "Start Over" to create a new plan.</p>
+          <p>
+            💡 Note: Your results will not be saved. Please take note/screenshot or print it. Click "Start
+            Over" to create a new plan.
+          </p>
         </div>
         <div className="button-container">
           <button onClick={handlePrint}>🖨️ Print Results</button>

@@ -76,6 +76,6 @@ class DataFormatter {
 
   formatTrainingDistance(distanceData) {
     return `${distanceData.min.toFixed(1)}-${distanceData.max.toFixed(1)} km `
-}
+  }
 }
 export default DataFormatter
