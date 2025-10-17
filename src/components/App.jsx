@@ -10,7 +10,6 @@ function App() {
   const [currentStep, setCurrentStep] = useState(1)
 
   const handleStepComplete = (stepData) => {
-    console.log('Step completed with data:', stepData)
     setUserData({ ...userData, ...stepData })
     setCurrentStep(currentStep + 1)
   }
