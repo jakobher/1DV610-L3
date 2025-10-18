@@ -127,10 +127,14 @@ Det finns även en [Testrapport](testreport.md) med resultaten.
 
 ## Kapitel 10
 
+Detta kapitel handlade om klasser och hur man bör förhålla sig när man implementerar dem. I mitt fall både i L2 och L3 anser jag att jag lyckats uppfylla **Small Classes** (längsta klassen i L3 är 81 rader lång `DataFormatter.js`) & (längsta klassen i L2 är 103 rader lång `TrainingPlanGenerator.js`). Jag tycker även att jag följt **Single Responsibility Principle** bra, samtliga klasser har sitt eget ansvar. Jag har även **Encapsulation** i form av privata metoder i flera av klasserna för att dölja implementation från användare. Se exempel från screenshots.
+
 ### L2
 
-**Classes Should Be Small!**
+![TrainingPlanGenerator](./images/TrainingPlanGenerator.png)
 
 ### L3
+
+![DataFormatter](./images/Dataformatter.png)
 
 
