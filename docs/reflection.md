@@ -116,7 +116,9 @@ Detta kapitel handlar om hur man skriver rena, tydliga och tillförlitliga teste
 ### L2
 
 Mina nuvarande manuella tester fungerar bra men följer inte **F.I.R.S.T**-principerna fullt ut. Jag väljer dock att behålla dem som de är i modulen.
-Jag kommer implementera Jest i mån av tid. 
+Jag har nu utmanat mig genom att även implementera Jest-tester för modulen med automatiska enhetstester som följer **F.I.R.S.T** och **One Assert Per Test**. Varje klass har sin egen testfil med tester.
+
+![Jest-L2](./images/Jest-L2.png)
 
 ### L3
 
