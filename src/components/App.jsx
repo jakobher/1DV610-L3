@@ -1,4 +1,3 @@
-import { RunningCalculator } from 'running-toolkit'
 import '../styles/components.css'
 import Profile from './Step1Profile.jsx'
 import Goal from './Step2Goal.jsx'

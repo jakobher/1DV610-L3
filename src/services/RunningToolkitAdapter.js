@@ -1,5 +1,5 @@
 import { FitnessAnalyzer, RacePredictor, TrainingPlanGenerator, RunningCalculator } from 'running-toolkit'
-class RunningAnalyzer {
+class RunningToolkitAdapter {
   constructor() {
     this.fitness = new FitnessAnalyzer()
     this.predictor = new RacePredictor()
@@ -72,4 +72,4 @@ class RunningAnalyzer {
   }
 }
 
-export default RunningAnalyzer
+export default RunningToolkitAdapter

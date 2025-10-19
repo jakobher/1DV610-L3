@@ -1,25 +1,25 @@
 import { useState, useMemo } from 'react'
 import DataFormatter from '../services/DataFormatter'
-import RunningAnalyzer from '../services/RunningAnalyzer'
+import RunningToolkitAdapter from '../services/RunningToolkitAdapter'
 
 function Result({ userData, onReset }) {
-  const analyzer = useMemo(() => new RunningAnalyzer(), [])
+  const adapter = useMemo(() => new RunningToolkitAdapter(), [])
   const formatter = useMemo(() => new DataFormatter(), [])
 
   const [showZoneDescriptions, setShowZoneDescriptions] = useState(false)
 
-  const profile = analyzer.analyzeProfile({
+  const profile = adapter.analyzeProfile({
     gender: userData.gender,
     age: userData.age,
     activityLevel: userData.activityLevel,
   })
   const profileSummary = formatter.createProfileSummary(profile)
-  const descriptions = analyzer.describePulseZones()
+  const descriptions = adapter.describePulseZones()
 
-  const requiredPace = analyzer.calculateRequiredPace(userData.targetDistance, userData.targetTime)
-  const requiredSpeed = analyzer.calculateSpeed(requiredPace)
+  const requiredPace = adapter.calculateRequiredPace(userData.targetDistance, userData.targetTime)
+  const requiredSpeed = adapter.calculateSpeed(requiredPace)
 
-  const isGoalRealistic = analyzer.assessGoalRealism({
+  const isGoalRealistic = adapter.assessGoalRealism({
     knownDistance: userData.knownDistance,
     knownTime: userData.knownTime,
     targetDistance: userData.targetDistance,
@@ -27,9 +27,9 @@ function Result({ userData, onReset }) {
   })
   const goalAssessment = formatter.createRealisticAssessment(isGoalRealistic)
 
-  const predictions = analyzer.predictAllDistances(userData.knownDistance, userData.knownTime)
-  const trainingplan = analyzer.generateTrainingPlan(userData.runningDaysPerWeek)
-  const trainingDistances = analyzer.calculateTrainingDistances(userData.targetDistance)
+  const predictions = adapter.predictAllDistances(userData.knownDistance, userData.knownTime)
+  const trainingplan = adapter.generateTrainingPlan(userData.runningDaysPerWeek)
+  const trainingDistances = adapter.calculateTrainingDistances(userData.targetDistance)
 
   const handlePrint = () => {
     window.print()

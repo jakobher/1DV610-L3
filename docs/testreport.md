@@ -13,7 +13,7 @@
 | FR-1.1 User input - Race goal | User can input race goal distance and target time | Filled in Step 2: distance="10K", time="50 min" | ✅ PASS |
 | FR-1.1 User input - Training frequency | User can select training frequency | Selected "3 days per week" in Step 2 | ✅ PASS |
 | FR-1.1 User input - Recent race result | User can input recent race distance and time | Entered recent race: distance="5 km", time="25 min" in Step 2 | ✅ PASS |
-| FR-1.2 Analysis - Uses module | System uses running-toolkit module | Verified RunningAnalyzer is imported and used in Step3Result.jsx | ✅ PASS |
+| FR-1.2 Analysis - Uses module | System uses running-toolkit module | Verified RunningToolkitAdapter is imported and used in Step3Result.jsx | ✅ PASS |
 | FR-1.2 Analysis - Required pace | System calculates required pace for race goal | Verified "Required Average Pace: 4:30 min/km (13.3 km/h)" displayed in Step 3 | ✅ PASS |
 | FR-1.2 Analysis - Fitness analysis | System provides full fitness analysis | Verified Profile Summary shows: Resting HR, Max HR, VO2 Max, and 5 pulse zones in Step 3 | ✅ PASS |
 | FR-1.2 Analysis - Goal realism | System evaluates goal realism | Entered achievable goal, received "✅ Realistic" assessment in Goal Analysis | ✅ PASS |
